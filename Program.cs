@@ -6,15 +6,15 @@ namespace EfDemo
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Program started");
+            Console.WriteLine("---------- Program started ----------");
             using (var context = new EfDemoDbContext("Server=(local);Database=EfDemo;Trusted_Connection=True;"))
             {
                 foreach (var product in context.Products)
                 {
-                    Console.WriteLine($"#{product.Id}: {product.Name}");
+                    Console.WriteLine($"{product.Name} (#{product.Id}): {product.Description}");
                 }
             }
-            Console.WriteLine("Program started");
+            Console.WriteLine("---------- Program Ended ----------");
         }
     }
 }
