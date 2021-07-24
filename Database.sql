@@ -1,50 +1,30 @@
-USE master;
-GO
-
-DROP DATABASE IF EXISTS EfDemo;
-GO
-
-CREATE DATABASE EfDemo;
+IF NOT EXISTS(SELECT * FROM sys.databases WHERE name = 'EfDemo')
+BEGIN
+	CREATE DATABASE [DataBase]
+END
 GO
 
 Use EfDemo;
 GO
 
-CREATE TABLE ProductCategories
-(
-	[Id] INT Identity(1, 1) PRIMARY KEY NOT NULL,
-	[Name] VARCHAR(200) UNIQUE NOT NULL
-);
+DROP TABLE IF EXISTS Products;
 GO
 
 CREATE TABLE Products 
 (
 	[Id] INT Identity(1, 1) PRIMARY KEY NOT NULL,
-	[CategoryId] INT NOT NULL,
-		CONSTRAINT FK_ProductCategories_Products 
-		FOREIGN KEY (CategoryId) REFERENCES ProductCategories (ID),
 	[Name] VARCHAR(200) UNIQUE NOT NULL, 
 	[Description] VARCHAR(MAX)
 );
 GO
 
-SET IDENTITY_INSERT ProductCategories ON;
-
-INSERT INTO ProductCategories ([Id], [Name]) 
+INSERT INTO Products ([Name], [Description]) 
 VALUES 
-	  ( 1, 'Stationery' ),
-	  ( 2, 'Electronics' );
-
-SET IDENTITY_INSERT ProductCategories OFF;
-GO
-
-INSERT INTO Products (CategoryId, [Name], [Description]) 
-VALUES 
-	  ( 1, 'Blue Pen', 'Plastic blue pen' )
-	, ( 1, 'Eraser', 'White eraser with cat picture' )
-	, ( 1, 'Paper Clip', 'Metal paper clip' )
-	, ( 1, 'Notebook', '100 pages notebook with red cover' )
-	, ( 2, 'Electronic Tablet', 'Android tablet with 64GB of memory' )
-	, ( 2, 'Smart Phone', 'Android smart phone with 48GB of memory' )
-	, ( 2, 'Laptop', 'Laptop with 16GB of memory and 512GB of SSD' )
+	  ( 'Blue Pen', 'Plastic blue pen' )
+	, ( 'Eraser', 'White eraser with cat picture' )
+	, ( 'Paper Clip', 'Metal paper clip' )
+	, ( 'Notebook', '100 pages notebook with red cover' )
+	, ( 'Electronic Tablet', 'Android tablet with 64GB of memory' )
+	, ( 'Smart Phone', 'Android smart phone with 48GB of memory' )
+	, ( 'Laptop', 'Laptop with 16GB of memory and 512GB of SSD' )
 GO
