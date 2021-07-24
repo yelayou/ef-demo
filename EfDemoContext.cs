@@ -6,7 +6,7 @@ namespace EfDemo
     {
         private readonly string _connectionString;
 
-        public DbSet<Product> Products { get; set; }        
+        public DbSet<Product> Products { get; set; }
 
         public EfDemoDbContext(string connectionString)
             => _connectionString = connectionString;
@@ -14,6 +14,13 @@ namespace EfDemo
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             optionsBuilder.UseSqlServer(_connectionString);
-        } 
+        }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<Product>()
+                .Property(p => p.Desc)
+                .HasColumnName("Description"); // <---- this ensure Description cannot be empty
+        }
     }
 }
