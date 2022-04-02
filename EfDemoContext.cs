@@ -20,7 +20,7 @@ namespace EfDemo
         {
             modelBuilder.Entity<Product>()
                 .Property(p => p.Desc)
-                .HasColumnName("Description"); // <---- this ensure Description cannot be empty
+                .HasColumnName("Description"); // <---- this ensures Description cannot be empty
         }
     }
 }
