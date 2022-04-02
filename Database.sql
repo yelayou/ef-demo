@@ -1,6 +1,6 @@
 IF NOT EXISTS(SELECT * FROM sys.databases WHERE name = 'EfDemo')
 BEGIN
-	CREATE DATABASE [DataBase]
+	CREATE DATABASE EfDemo;
 END
 GO
 
